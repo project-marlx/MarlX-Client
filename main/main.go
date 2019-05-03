@@ -29,12 +29,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// tip := "127.0.0.1"
 	tip := "193.80.220.151"
-	// fip := "127.0.0.1"
-	fip := "192.168.0.102"
 
-	tcpConn, err := socks.GetConnectedSocket(tip, fip)
+	tcpConn, err := socks.GetConnectedSocketDefault(tip)
 	if err != nil {
 		fmt.Println("[-] Server is not up! ")
 		return

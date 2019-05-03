@@ -33,3 +33,21 @@ func GetConnectedSocketOnPort(to_ip string, from_ip string) (*net.TCPConn, error
 
 	return conn, nil
 }
+
+func GetConnectedSocketDefault(hostname string) (*net.TCPConn, error) {
+	return GetConnectedSocketOnPortDefault(fmt.Sprintf("%s:8024", hostname));
+}
+
+func GetConnectedSocketOnPortDefault(to_ip string) (*net.TCPConn, error) {
+	remoteAddr, err := net.ResolveTCPAddr("tcp4", to_ip)
+	if err != nil {
+		return nil, err
+	}
+
+	conn, err := net.DialTCP("tcp", nil, remoteAddr)
+	if err != nil {
+		return nil, err
+	}
+
+	return conn, nil
+}
